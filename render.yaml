@@ -1,0 +1,46 @@
+# Render Blueprint: provisions a managed Postgres database + the Spring Boot backend.
+# Deploy by pointing Render at this repo ("New +" -> "Blueprint").
+# The Next.js frontend is deployed separately on Vercel (see DEPLOY.md).
+
+databases:
+  - name: timeline-db
+    plan: free
+    databaseName: timelinedb
+    user: timeline
+
+services:
+  - type: web
+    name: timeline-backend
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./my-react-router-app/my-app-backend/Dockerfile
+    dockerContext: ./my-react-router-app/my-app-backend
+    healthCheckPath: /api/timeline
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: DB_HOST
+        fromDatabase:
+          name: timeline-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: timeline-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: timeline-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: timeline-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: timeline-db
+          property: password
+      # Set this to your Vercel frontend URL after the first deploy (no trailing slash).
+      # Comma-separate multiple origins if needed.
+      - key: ALLOWED_ORIGINS
+        sync: false

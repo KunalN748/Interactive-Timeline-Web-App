@@ -1,0 +1,21 @@
+# ---- Java / Spring Boot backend ----
+**/target/
+**/data/
+*.log
+
+# ---- Node / Next.js frontend ----
+**/node_modules/
+**/.next/
+**/out/
+**/.env
+**/.env.local
+**/.env*.local
+
+# ---- Editors / OS ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ---- Office / OneDrive temp lock files ----
+~$*

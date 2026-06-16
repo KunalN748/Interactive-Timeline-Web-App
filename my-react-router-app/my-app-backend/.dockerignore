@@ -1,0 +1,8 @@
+target/
+data/
+*.log
+.git
+.gitignore
+.vscode/
+.idea/
+HELP.md
