@@ -2,6 +2,7 @@
 **/target/
 **/data/
 *.log
+*.err
 
 # ---- Node / Next.js frontend ----
 **/node_modules/
