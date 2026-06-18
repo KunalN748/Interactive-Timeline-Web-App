@@ -40,7 +40,7 @@ services:
         fromDatabase:
           name: timeline-db
           property: password
-      # Set this to your Vercel frontend URL after the first deploy (no trailing slash).
+      # Vercel frontend URL(s) allowed by CORS (no trailing slash).
       # Comma-separate multiple origins if needed.
       - key: ALLOWED_ORIGINS
-        sync: false
+        value: https://interactive-timeline-web-app-pden.vercel.app
